@@ -1,4 +1,4 @@
-const serviceControllers = {
+const pruebasControllers = {
   MyService: {
     MyPort: {
       MyFunction: function(args) {
@@ -11,4 +11,4 @@ const serviceControllers = {
   }
 }
 
-module.exports = serviceControllers;
+module.exports = pruebasControllers;
