@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://example.com/clientes-service"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/clientes-service"
+             name="ClientesService">
+
+  <types>
+    <xsd:schema targetNamespace="http://example.com/clientes-service">
+      <xsd:complexType name="Cliente">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int"/>
+          <xsd:element name="nombres" type="xsd:string"/>
+          <xsd:element name="apellidos" type="xsd:string"/>
+          <xsd:element name="telefono" type="xsd:string"/>
+          <xsd:element name="correo" type="xsd:string"/>
+          <xsd:element name="estado" type="xsd:int"/>
+          <xsd:element name="createdAt" type="xsd:datetime"/>
+          <xsd:element name="updatedAt" type="xsd:dateTime"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="getClientsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getClientsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="clientes" type="tns:Cliente" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="getClientsByIdRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getClientsByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="clientes" type="tns:Cliente" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="createClientRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nombres" type="xsd:string"/>
+            <xsd:element name="apellidos" type="xsd:string"/>
+            <xsd:element name="correo" type="xsd:string"/>
+            <xsd:element name="telefono" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createClientResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+        <xsd:element name="updateClientRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="nombres" type="xsd:string"/>
+            <xsd:element name="apellidos" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateClientResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="deleteRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="getClientsRequestMessage">
+    <part name="parameters" element="tns:getClientsRequest"/>
+  </message>
+
+  <message name="getClientsResponseMessage">
+    <part name="parameters" element="tns:getClientsResponse"/>
+  </message>
+
+  <message name="getClientsByIdRequestMessage">
+    <part name="parameters" element="tns:getClientsByIdRequest"/>
+  </message>
+
+  <message name="getClientsByIdResponseMessage">
+    <part name="parameters" element="tns:getClientsByIdResponse"/>
+  </message>
+
+  <message name="createClientRequestMessage">
+    <part name="parameters" element="tns:createClientRequest"/>
+  </message>
+  <message name="createClientResponseMessage">
+    <part name="parameters" element="tns:createClientResponse"/>
+  </message>
+
+  <message name="updateClientRequestMessage">
+    <part name="parameters" element="tns:updateClientRequest"/>
+  </message>
+  <message name="updateClientResponseMessage">
+    <part name="parameters" element="tns:updateClientResponse"/>
+  </message>
+
+  <message name="deleteRequestMessage">
+    <part name="parameters" element="tns:deleteRequest"/>
+  </message>
+  <message name="deleteResponseMessage">
+    <part name="parameters" element="tns:deleteResponse"/>
+  </message>
+
+  <portType name="ClientesPortType">
+    <operation name="getClients">
+      <input message="tns:getClientsRequestMessage"/>
+      <output message="tns:getClientsResponseMessage"/>
+    </operation>
+
+    <operation name="createClient">
+      <input message="tns:createClientRequestMessage"/>
+      <output message="tns:createClientResponseMessage"/>
+    </operation>
+
+    <operation name="updateClient">
+      <input message="tns:updateClientRequestMessage"/>
+      <output message="tns:updateClientResponseMessage"/>
+    </operation>
+
+    <operation name="getClientsById">
+      <input message="tns:getClientsByIdRequestMessage"/>
+      <output message="tns:getClientsByIdResponseMessage"/>
+    </operation>
+
+    <operation name="deleteClients">
+      <input message="tns:deleteRequestMessage"/>
+      <output message="tns:deleteResponseMessage"/>
+    </operation>
+  </portType>
+
+  <binding name="ClientesBinding" type="tns:ClientesPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getClients">
+      <soap:operation soapAction="http://example.com/clientes-service/getClients"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="createClient">
+      <soap:operation soapAction="http://example.com/clientes-service/createClient"/>
+    <input>
+      <soap:body use="literal"/>
+    </input>
+    <output>
+      <soap:body use="literal"/>
+    </output>
+    </operation>
+
+    <operation name="updateClient">
+      <soap:operation soapAction="http://example.com/clientes-service/updateClient"/>
+    <input>
+      <soap:body use="literal"/>
+    </input>
+    <output>
+      <soap:body use="literal"/>
+    </output>
+    </operation>
+
+    <operation name="getClientsById">
+      <soap:operation soapAction="http://example.com/clientes-service/getClientsById"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="deleteClients">
+      <soap:operation soapAction="http://example.com/clientes-service/deleteClients"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="ClientesService">
+    <port name="ClientesPort" binding="tns:ClientesBinding">
+      <soap:address location="http://localhost:3000/clientes"/>
+    </port>
+  </service>
+</definitions>
