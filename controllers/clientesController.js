@@ -56,7 +56,6 @@ const clientesController = {
               estado: row.estado,
             })),
           };
-          const jsonResponse = JSON.stringify(response);
           callback(null, response);
         } catch (error) {
           callback({
@@ -70,7 +69,7 @@ const clientesController = {
             },
           });
         }
-      },
+      }, 
       createClient: async function (args, callback) {
         try {
           const { nombres, apellidos, telefono, correo } = args;
