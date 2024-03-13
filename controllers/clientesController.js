@@ -7,9 +7,7 @@ const clientesController = {
         console.log("Llamada a getClientsById");
         try {
           const { id } = args;
-          const [rows] = await db.query("SELECT * FROM clientes WHERE id = ?", [
-            id,
-          ]);
+          const [rows] = await db.query("SELECT * FROM clientes WHERE id = ?", [id,]);
           const response = {
             cliente: {
               id: rows[0].id,

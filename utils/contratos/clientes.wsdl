@@ -74,6 +74,8 @@
             <xsd:element name="id" type="xsd:int"/>
             <xsd:element name="nombres" type="xsd:string"/>
             <xsd:element name="apellidos" type="xsd:string"/>
+            <xsd:element name="correo" type="xsd:string"/>
+            <xsd:element name="telefono" type="xsd:string"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -105,7 +107,6 @@
   <message name="getClientsRequestMessage">
     <part name="parameters" element="tns:getClientsRequest"/>
   </message>
-
   <message name="getClientsResponseMessage">
     <part name="parameters" element="tns:getClientsResponse"/>
   </message>
@@ -113,7 +114,6 @@
   <message name="getClientsByIdRequestMessage">
     <part name="parameters" element="tns:getClientsByIdRequest"/>
   </message>
-
   <message name="getClientsByIdResponseMessage">
     <part name="parameters" element="tns:getClientsByIdResponse"/>
   </message>
