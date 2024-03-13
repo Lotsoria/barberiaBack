@@ -90,7 +90,7 @@ const serviciosController = {
               callback(error);
             }
           },
-          deleteService: async function (args, callback) {
+          deleteServicios: async function (args, callback) {
             try {
               const { id } = args;
               const result = await db.query("UPDATE servicios SET estado = 0 WHERE id = ?", [
