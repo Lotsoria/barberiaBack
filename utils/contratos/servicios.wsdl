@@ -32,24 +32,131 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+
+    <xsd:element name="getServiciosByIdRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getServiciosByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="servicios" type="tns:Servicio" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="createServiciosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="precio" type="xsd:decimal"/>
+            <xsd:element name="descripcion" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createServiciosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="updateServiciosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="precio" type="xsd:decimal"/>
+            <xsd:element name="descripcion" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateServiciosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="deleteServiciosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteServiciosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
     </xsd:schema>
   </types>
 
   <message name="getServiciosRequestMessage">
     <part name="parameters" element="tns:getServiciosRequest"/>
   </message>
-
   <message name="getServiciosResponseMessage">
     <part name="parameters" element="tns:getServiciosResponse"/>
   </message>
 
+  <message name="getServiciosByIdRequestMessage">
+    <part name="parameters" element="tns:getServiciosByIdRequest"/>
+  </message>
+  <message name="getServiciosByIdResponseMessage">
+    <part name="parameters" element="tns:getServiciosByIdResponse"/>
+  </message>
 
+  <message name="createServiciosRequestMessage">
+    <part name="parameters" element="tns:createServiciosRequest"/>
+  </message>
+  <message name="createServiciosResponseMessage">
+    <part name="parameters" element="tns:createServiciosResponse"/>
+  </message>
 
+  <message name="updateServiciosRequestMessage">
+    <part name="parameters" element="tns:updateServiciosRequest"/>
+  </message>
+  <message name="updateServiciosResponseMessage">
+    <part name="parameters" element="tns:updateServiciosResponse"/>
+  </message>
+
+  <message name="deleteServiciosRequestMessage">
+    <part name="parameters" element="tns:deleteServiciosRequest"/>
+  </message>
+  <message name="deleteServiciosResponseMessage">
+    <part name="parameters" element="tns:deleteServiciosResponse"/>
+  </message>
 
   <portType name="ServiciosPortType">
     <operation name="getServicios">
       <input message="tns:getServiciosRequestMessage"/>
       <output message="tns:getServiciosResponseMessage"/>
+    </operation>
+
+    <operation name="getServiciosById">
+      <input message="tns:getServiciosByIdRequestMessage"/>
+      <output message="tns:getServiciosByIdResponseMessage"/>
+    </operation>
+
+    <operation name="createServicios">
+      <input message="tns:createServiciosRequestMessage"/>
+      <output message="tns:createServiciosResponseMessage"/>
+    </operation>
+
+    <operation name="updateServicios">
+      <input message="tns:updateServiciosRequestMessage"/>
+      <output message="tns:updateServiciosResponseMessage"/>
+    </operation>
+
+    <operation name="deleteServicios">
+      <input message="tns:deleteServiciosRequestMessage"/>
+      <output message="tns:deleteServiciosResponseMessage"/>
     </operation>
   </portType>
 
@@ -64,6 +171,47 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+
+    <operation name="getServiciosById">
+      <soap:operation soapAction="http://example.com/servicios-service/getServiciosById"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="createServicios">
+      <soap:operation soapAction="http://example.com/servicios-service/createServicios"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="updateServicios">
+      <soap:operation soapAction="http://example.com/servicios-service/updateServicios"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="deleteServicios">
+      <soap:operation soapAction="http://example.com/servicios-service/deleteServicios"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
   </binding>
 
   <service name="ServiciosService">
