@@ -10,15 +10,20 @@ const wsdlClients = fs.readFileSync(wsdlPathClients, 'utf8');
 //Servicios WSDL
 const wsdlPathServicios = path.join(__dirname, '../utils/contratos/servicios.wsdl');
 const wsdlServicios = fs.readFileSync(wsdlPathServicios, 'utf8');
+//Citas WSDL
+const wsdlPathCitas = path.join(__dirname, '../utils/contratos/citas.wsdl');
+const wsdlCitas = fs.readFileSync(wsdlPathCitas, 'utf8');
 
 //Controllers
 const pruebasController = require('../controllers/pruebasController');
 const clientesController = require('../controllers/clientesController');
 const serviciosController = require('../controllers/serviciosControllers');
+const citasController = require('../controllers/citasController');
 
 //Exportar los servicios
 module.exports = function(app) {
   soap.listen(app, '/pruebas', pruebasController, wsdlPruebas);
   soap.listen(app, '/clientes', clientesController, wsdlClients);
   soap.listen(app, '/servicios', serviciosController, wsdlServicios);
+  soap.listen(app, '/citas', citasController, wsdlCitas);
 };
