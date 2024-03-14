@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://example.com/citas-service"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/citas-service"
+             name="CitasService">
+
+  <types>
+    <xsd:schema targetNamespace="http://example.com/citas-service">
+      <xsd:complexType name="Cita">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int"/>
+          <xsd:element name="fechaReservacion" type="xsd:date"/>
+          <xsd:element name="horaReservacion" type="xsd:time"/>
+          <xsd:element name="cliente_id" type="xsd:int"/>
+          <xsd:element name="servicio_id" type="xsd:int"/>
+          <xsd:element name="estado" type="xsd:int"/>
+          <xsd:element name="createdAt" type="xsd:date"/>
+          <xsd:element name="updatedAt" type="xsd:date"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="getCitasRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCitasResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="citas" type="tns:Cita" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="getCitasByIdRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCitasByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="citas" type="tns:Servicio" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="createCitasRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="fechaReservacion" type="xsd:date"/>
+            <xsd:element name="horaReservacion" type="xsd:time"/>
+            <xsd:element name="cliente_id" type="xsd:int"/>
+            <xsd:element name="servicio_id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createCitasResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="updateCitasRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="fechaReservacion" type="xsd:date"/>
+            <xsd:element name="horaReservacion" type="xsd:time"/>
+            <xsd:element name="cliente_id" type="xsd:int"/>
+            <xsd:element name="servicio_id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateCitasResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="deleteCitasRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteCitasResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="getCitasRequestMessage">
+    <part name="parameters" element="tns:getCitasRequest"/>
+  </message>
+  <message name="getCitasResponseMessage">
+    <part name="parameters" element="tns:getCitasResponse"/>
+  </message>
+
+  <message name="getCitasByIdRequestMessage">
+    <part name="parameters" element="tns:getCitasByIdRequest"/>
+  </message>
+  <message name="getCitasByIdResponseMessage">
+    <part name="parameters" element="tns:getCitasByIdResponse"/>
+  </message>
+
+  <message name="createCitasRequestMessage">
+    <part name="parameters" element="tns:createCitasRequest"/>
+  </message>
+  <message name="createCitasResponseMessage">
+    <part name="parameters" element="tns:createCitasResponse"/>
+  </message>
+
+  <message name="updateCitasRequestMessage">
+    <part name="parameters" element="tns:updateCitasRequest"/>
+  </message>
+  <message name="updateCitasResponseMessage">
+    <part name="parameters" element="tns:updateCitasResponse"/>
+  </message>
+
+  <message name="deleteCitasRequestMessage">
+    <part name="parameters" element="tns:deleteCitasRequest"/>
+  </message>
+  <message name="deleteCitasResponseMessage">
+    <part name="parameters" element="tns:deleteCitasResponse"/>
+  </message>
+
+  <portType name="CitasPortType">
+    
+    <operation name="getCitas">
+      <input message="tns:getCitasRequestMessage"/>
+      <output message="tns:getCitasResponseMessage"/>
+    </operation>
+
+    <operation name="getCitasById">
+      <input message="tns:getCitasByIdRequestMessage"/>
+      <output message="tns:getCitasByIdResponseMessage"/>
+    </operation>
+
+    <operation name="createCitas">
+      <input message="tns:createCitasRequestMessage"/>
+      <output message="tns:createCitasResponseMessage"/>
+    </operation>
+
+    <operation name="updateCitas">
+      <input message="tns:updateCitasRequestMessage"/>
+      <output message="tns:updateCitasResponseMessage"/>
+    </operation>
+
+    <operation name="deleteCitas">
+      <input message="tns:deleteCitasRequestMessage"/>
+      <output message="tns:deleteCitasResponseMessage"/>
+    </operation>
+
+  </portType>
+
+  <binding name="CitasBinding" type="tns:CitasPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    
+    <operation name="getCitas">
+      <soap:operation soapAction="http://example.com/citas-service/getCitas"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="getCitasById">
+      <soap:operation soapAction="http://example.com/Citas-service/getCitasById"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="createCitas">
+      <soap:operation soapAction="http://example.com/citas-service/createCitas"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="updateCitas">
+      <soap:operation soapAction="http://example.com/citas-service/updateCitas"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="deleteCitas">
+      <soap:operation soapAction="http://example.com/citas-service/deleteCitas"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+  </binding>
+
+  <service name="CitasService">
+    <port name="CitasPort" binding="tns:CitasBinding">
+      <soap:address location="http://localhost:3000/citas"/>
+    </port>
+  </service>
+</definitions>

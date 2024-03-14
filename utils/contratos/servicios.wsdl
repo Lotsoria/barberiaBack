@@ -162,6 +162,7 @@
 
   <binding name="ServiciosBinding" type="tns:ServiciosPortType">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    
     <operation name="getServicios">
       <soap:operation soapAction="http://example.com/servicios-service/getServicios"/>
       <input>
