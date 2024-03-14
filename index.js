@@ -5,7 +5,7 @@ const db = require('./database/db');
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://localhost:62817'
+  origin: 'http://localhost:4200'
 }));
 const soapService = require('./services/soapService');
 

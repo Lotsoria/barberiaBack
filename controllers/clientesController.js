@@ -85,10 +85,10 @@ const clientesController = {
       },
       updateClient: async function (args, callback) {
         try {
-          const { id, nombres, apellidos } = args;
+          const { id, nombres, apellidos, correo, telefono } = args;
           const result = await db.query(
-            "UPDATE clientes SET nombres = ?, apellidos = ? WHERE id = ?",
-            [nombres, apellidos, id]
+            "UPDATE clientes SET nombres = ?, apellidos = ?, correo = ?, telefono = ?, updatedAt = NOW() WHERE id = ?",
+            [nombres, apellidos, correo, telefono, id]
           );
           callback(null, { result: "Usuario actualizado correctamente!!" });
         } catch (error) {
